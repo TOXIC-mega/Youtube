@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      YouTube
+    </title>
+    <style>
+      html{
+        scroll-behavior: smooth;
+      }
+      body{
+        background-color: rgb(20, 20, 20);
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        padding-bottom: 2000px;
+      }
+      .header{
+        display: flex;
+        margin: 12px 0 0 20px;
+        position: fixed;
+        z-index: 100;
+        flex: 1;
+        flex-shrink: 1;
+      }
+      .logo{
+        width: 95px;
+        height: 26px;
+        margin: 7px 500px 0 20px;
+        cursor: pointer;
+      }
+      .menu-img{
+        width: 26px;
+        cursor: pointer;
+        margin-top: 7px;
+      }
+      .search-bar{
+        width: 550px;
+        height: 38px;
+        border: 1px solid rgb(70, 70, 70);
+        background-color: rgb(20, 20, 20);
+        border-radius: 35px;
+        color: white;
+        padding-left: 12px;
+        padding-right: 100px;
+      }
+      .search-bar::placeholder{
+        font-size: 16px;
+      }
+      .search-bar:focus{
+        outline: none;
+        color: rgb(236, 236, 236);
+      }
+      .tia-img{
+        margin: 5px 0 0 -93px;
+        width: 23px;
+        cursor: pointer;
+      }
+      .search-but{
+        width: 70px;
+        height: 38px;
+        margin: 2px 30px 0 -55px;
+        border: none;
+        border-radius: 0 35px 35px 0;
+        background-color: rgb(49, 49, 49);
+        border: 1px solid rgb(70, 70, 70);
+        cursor: pointer;
+      }
+      .search-img{
+        margin: 0 0 0 12px;
+        width: 28px;
+        display: flex;
+        cursor: pointer;
+      }
+      .mic-but{
+        background-color: rgb(49, 49, 49);
+        border: none;
+        border-radius: 35px;
+        width: 38px;
+        height: 38px;
+        cursor: pointer;
+        padding: 2px 0 0 0;
+        transition: 0.8s ease;
+      }
+      .mic-but:hover{
+        background-color: rgb(90, 90, 90);
+      }
+      .mic-img{
+        width: 28px;
+        cursor: pointer;
+      }
+      .plus-but{
+        background-color: rgb(49, 49, 49);
+        border: none;
+        border-radius: 35px;
+        color: white;
+        display: flex;
+        align-items: center;
+        width: 95px;
+        height: 38px;
+        font-size: 15.5px;
+        cursor: pointer;
+        margin: 0 0 0 34px;
+        transition: 0.8s ease;
+      }
+      .plus-but:hover{
+        background-color: rgb(90, 90, 90);
+      }
+      .plus-img{
+        margin: 0 4px 0 2px;
+        cursor: pointer;
+      }
+      .notifications{
+        width: 28px;
+        margin: 6px 10px 0 8px;
+        cursor: pointer;
+      }
+      .num-8{
+        background-color: red;
+        color: white;
+        border-radius: 150px;
+        width: 10px;
+        height: 15px;
+        padding: 1px 3px 2px 4px;
+        margin: -36px 0 0 22px;
+        position: absolute;
+        cursor: pointer;
+      }
+      .pfp-img{
+        border-radius: 150px;
+        width: 40px;
+        height: 40px;
+        margin-left: 8px;
+        cursor: pointer;
+      }
+      .sidebar{
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        width: 260px;
+        padding: 22px 0 22px 15px;
+        overflow-y: scroll;
+        top: 55px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 200;
+      }
+      .sidebar::-webkit-scrollbar{
+        width: 8px;
+        display: none;
+      }
+      .test1{
+        display: flex;
+        flex-direction: column;
+        padding: 0 0 12px 0;
+        color: whitesmoke;
+        font-size: 17px;
+        border-bottom: 1px solid rgb(50, 50, 50);
+        width: 210px;
+      }
+      .test2,
+      .test3{
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        cursor: pointer;
+        padding-left: 8px;
+      }
+      .test2{
+        background-color: rgb(50, 50, 50);
+        border-radius: 5px;
+        width: 200px;
+        height: 35px;
+      }
+      .test3{
+        border-radius: 5px;
+        width: 200px;
+        height: 35px;
+      }
+      .test3:hover,
+      .channel2:hover,
+      .channel1:hover,
+      .icona-div:hover,
+      .subs:hover,
+      .you:hover{
+        background-color: rgb(50, 50, 50);
+      }
+      .home-img,
+      .play-img{
+        width: 28px;
+        margin: 0 15px 0 0;
+      }
+      .subs{
+        color: whitesmoke;
+        display: grid;
+        grid-template-columns: 120px 1fr;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        border-radius: 5px;
+        width: 200px;
+        height: 30px;
+        margin-top: 11px;
+        padding: 11px 0 0 8px;
+      }
+      .znak{
+        margin: 1px 0 0 8px;
+      }
+      .channel1{
+        color: whitesmoke;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 12px 0 0 0;
+        padding-left: 8px;
+        cursor: pointer;
+        border-radius: 5px;
+        width: 200px;
+        height: 40px;
+      }
+      .channel2{
+        color: whitesmoke;
+        font-size: 14px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        align-items: center;
+        gap: 12px;
+        margin: 12px 0 0 0;
+        padding-left: 8px;
+        cursor: pointer;
+        border-radius: 5px;
+        width: 200px;
+        height: 40px;
+      }
+      .pfp1{
+        border-radius: 150px;
+        width: 32px;
+        height: 32px;
+      }
+      .test4{
+        border-bottom: 1px solid rgb(50, 50, 50);
+        width: 210px;
+        padding-bottom: 12px;
+      }
+      .dot{
+        background-color: rgb(15, 146, 221);
+        border-radius: 50%;
+        width: 4px;
+        height: 4px;
+        display: flex;
+        justify-content: right;
+      }
+      .you{
+        color: whitesmoke;
+        display: grid;
+        grid-template-columns: 40px 1fr;
+        margin: 22px 0 0;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        border-radius: 5px;
+        width: 200px;
+        height: 30px;
+        margin-top: 11px;
+        padding: 11px 0 0 8px;
+      }
+      .icona-div{
+        display: grid;
+        grid-template-columns: 35px 110px;
+        color: whitesmoke;
+        border-radius: 5px;
+        cursor: pointer;
+        gap: 12px;
+        align-items: center;
+        padding-left: 8px;
+        margin: 12px 0 0 0;
+        border-radius: 5px;
+        width: 200px;
+        height: 40px;
+      }
+      .icona1{
+        width: 32px;
+      }
+      .divec{
+        border-bottom: 1px solid rgb(50, 50, 50);
+        padding-bottom: 12px;
+        width: 210px;
+      }
+      .text{
+        color: rgb(122, 121, 121);
+        margin: 22px 0 0 0;
+        width: 200px;
+        font-size: 13px;
+      }
+      .buttons-div{
+        display: flex;
+        align-items: center;
+        justify-content: left;
+        padding: 80px 0 0 295px;
+        gap: 13px;
+      }
+      .button1{
+        background-color: rgb(50, 50, 50);
+        border: none;
+        color: whitesmoke;
+        border-radius: 5px;
+        width: auto;
+        height: 30px;
+        cursor: pointer;
+        transition: background 0.8s ease;
+        transition: 0.8s ease;
+        font-size: 15px;
+      }
+      .button2{
+        background-color: whitesmoke;
+        border: none;
+        color: black;
+        border-radius: 5px;
+        width: auto;
+        height: 30px;
+        cursor: pointer;
+        transition: background 0.8s ease;
+        transition: 0.8s ease;
+        font-size: 15px;
+      }
+      .button1:hover,
+      .button2:hover{
+        background-color: whitesmoke;
+        color: black;
+      }
+      .thumb1{
+        width: 450px;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 15px;
+      }
+      .thumb-div{
+        margin: 50px 0 0 355px;
+        width: 450px;
+        cursor: pointer;
+      }
+      .thumb-div2{
+        margin: 50px 0 0 42px;
+        width: 450px;
+        cursor: pointer;
+      }
+      .time{
+        color: white;
+        height: 16px;
+        display: block;
+        font-size: 14px;
+        width: 32px;
+        padding: 4px 2px 4px 4px;
+        margin: -35px 0 0 400px;
+      }
+      .info{
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        margin: 22px 0 0 0;
+      }
+      .name,
+      .name2{
+        font-size: 20px;
+        color: whitesmoke;
+        cursor: pointer;
+      }
+      .name2{
+        width: 400px;
+      }
+      .name3{
+        width: 350px;
+      }
+      .genre{
+        font-size: 15px;
+        color: gray;
+        position: absolute;
+        margin-top: 8px;
+      }
+      .more-div{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .more-img{
+        transition: 0.2s;
+      }
+      .more-img:hover{
+        background-color: rgb(70, 70, 70);
+        border-radius: 150px;
+        padding: 3px;
+      }
+      .container{
+        display: flex;
+      }
+      .views{
+        color: gray;
+        margin-top: 8px;
+      }
+      .views2{
+        color: gray;
+        margin-top: -16px;
+      }
+      .pfp-video{
+        width: 55px;
+        border-radius: 150px;
+        margin: 22px 12px 0 0;
+      }
+    </style>
+  </head>
+
+    <div class="header">
+      <div>
+        <div style="display: flex;">
+          <div>
+          <img class="menu-img" src="project8-img/menu_30dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg"
+          onclick="hamburgerBtn">
+          </div>
+          <div>
+          <img class="logo" src="project8-img/youtube_cropped.png">
+          </div>
+        </div>
+      </div>
+
+
+        <div style="display: flex;
+        align-items: center;">
+        <div>
+          <input class="search-bar" type="search" placeholder="Search">
+        </div>
+        <div>
+          <img class="tia-img" src="project8-img/tia.png">
+        </div>
+        <div>
+          <button class="search-but">
+            <img class="search-img" src="project8-img/search_30dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg">
+          </button>
+        </div>
+        <div mic-div>
+          <button class="mic-but">
+            <img class="mic-img" src="project8-img/mic_30dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg">
+          </button>
+        </div>
+      </div>
+
+
+
+      <div style="display: flex;">
+        <div style="margin: 0 0 0 350px;">
+          <button class="plus-but">
+            <img class="plus-img" src="project8-img/add_30dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg"> Create
+          </button>
+          </div>
+          <div>
+          <div>
+          <img class="notifications" src="project8-img/notifications_30dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg">
+          </div>
+          <div class="num-8">8</div>
+          </div>
+          <div>
+          <img class="pfp-img" src="project8-img/channels4_profile.jpg">
+          </div>
+    </div>
+    </div>
+
+
+
+
+    <div class="container">
+
+      <div class="sidebar">
+      <div class="test1">
+        <a class="test2">
+          <img class="home-img" src="project8-img/home_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+          Home
+        </a>
+        <a class="test3">
+          <img class="play-img" src="project8-img/play_circle_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+          Shorts
+        </a>
+      </div>
+
+        <div class="test4">
+        <div class="subs">
+            Subscriptions<span>></span>
+        </div>
+        <div class="channel2">
+          <img class="pfp1" src="project8-img/unnamed.jpg">
+          <div style="width: 120px;">
+            Zitron_Citron
+            </div>
+          <div class="dot"></div>
+        </div>
+        <div class="channel2">
+          <img class="pfp1" src="project8-img/channels4_profile (1).jpg">
+          <div style="width: 145px;">
+          Message in a bottle...
+          </div>
+        </div>
+        <div class="channel2">
+          <img class="pfp1" src="project8-img/channels4_profile (2).jpg">
+          <div style="width: 120px;">
+          Solar Girl ASMR
+          </div>
+        </div>
+        <div class="channel2">
+          <img class="pfp1" src="project8-img/channels4_profile (3).jpg">
+          <div style="width: 120px;">
+          Clem Whispers
+          </div>
+          <div class="dot"></div>
+        </div>
+        <div class="channel2">
+          <img class="pfp1" src="project8-img/channels4_profile (4).jpg">
+          <div style="width: 120px;">
+          Sibiřan Extra
+          </div>
+        </div>
+        <div class="channel2">
+          <img class="pfp1" src="project8-img/channels4_profile (5).jpg">
+          <div style="width: 120px;">
+          Martin-Shrnutí
+          </div>
+          <div class="dot"></div>
+        </div>
+        <div class="channel2">
+          <img class="pfp1" src="project8-img/unnamed (1).jpg">
+          <div style="width: 120px;">
+          Sibiřan
+          </div>
+          <div class="dot"></div>
+        </div>
+        <div class="channel1" style="cursor: pointer;">
+          <img style="width: 28px;
+          margin: 1px 4px 0 0;" src="project8-img/keyboard_arrow_down_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+          Show more
+        </div>
+      </div>
+
+      <div class="divec">
+        <div class="you">
+          You <span>></span>
+        </div>
+        <div class="icona-div">
+          <img class="icona1" src="project8-img/account_circle_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+          <div>
+            Your channel
+          </div>
+        </div>
+        <div class="icona-div">
+          <img class="icona1" src="project8-img/history_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+          <div>
+            History
+          </div>
+        </div>
+        <div class="icona-div">
+          <img class="icona1" src="project8-img/playlist_play_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+          <div>
+            Playlists
+          </div>
+        </div>
+        <div class="icona-div">
+          <img class="icona1" src="project8-img/schedule_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+          <div>
+            Watch later
+          </div>
+        </div>
+        <div class="icona-div">
+          <img class="icona1" src="project8-img/thumb_up_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+          <div>
+            Popular videos
+          </div>
+        </div>
+        <div class="icona-div">
+          <img class="icona1" src="project8-img/play_circle_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+          <div>
+            Your videos
+          </div>
+        </div>
+        <div class="icona-div">
+          <img class="icona1" src="project8-img/download_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+          <div>
+            Downloaded
+          </div>
+          <div>
+          </div>
+        </div>
+      </div>
+
+      <div class="divec">
+        <div class="you">
+          Explore <span style="margin-left: 30px;">></span>
+        </div>
+        <div class="icona-div">
+          <img class="icona1" src="project8-img/music_note_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+          <div>
+            Music
+          </div>
+        </div>
+        <div class="icona-div">
+          <img class="icona1" src="project8-img/movie_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+          <div>
+            Videos
+          </div>
+        </div>
+        <div class="icona-div">
+          <img class="icona1" src="project8-img/stadia_controller_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+          <div>
+            Games
+          </div>
+        </div>
+        <div class="channel1" style="cursor: pointer;">
+          <img style="width: 28px;
+          margin: 1px 4px 0 0;" src="project8-img/keyboard_arrow_down_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+          Show more
+        </div>
+      </div>
+
+      <div class="divec">
+      <div class="icona-div">
+        <img class="icona1" src="project8-img/flag_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+        <div style="width: 150px;">
+          Reporting history
+        </div>
+      </div>
+      </div>
+
+      <div class="text">
+        <div style="margin-bottom: 12px;
+        cursor: pointer;">
+          Information Print Copyright Contact Us Authors Advertising Developers
+        </div>
+        <div style="margin-bottom: 12px;
+        cursor: pointer;">
+          Terms and conditions Privacy Policy and security How Youtube works Try new features
+        </div>
+        <div>
+          © 2026 Google LLC
+        </div>
+      </div>
+    </div>
+    </div>
+
+
+    <div class="buttons-div">
+      <div>
+        <button class="button2">
+          All
+        </button>
+      </div>
+      <div>
+        <button class="button1">
+          Games
+        </button>
+      </div>
+      <div>
+        <button class="button1">
+          Music
+        </button>
+      </div>
+      <div>
+        <button class="button1">
+          Mixes
+        </button>
+      </div>
+      <div>
+        <button class="button1">
+          Podcasts
+        </button>
+      </div>
+      <div>
+        <button class="button1">
+          Live
+        </button>
+      </div>
+      <div>
+        <button class="button1">
+          ASMR
+        </button>
+      </div>
+      <div>
+        <button class="button1">
+          Minecraft
+        </button>
+      </div>
+      <div>
+        <button class="button1">
+          FPS Games
+        </button>
+      </div>
+      <div>
+        <button class="button1">
+          Animation
+        </button>
+      </div>
+      <div>
+        <button class="button1">
+          Rapping
+        </button>
+      </div>
+      <div>
+        <button class="button1">
+          Newly uploaded
+        </button>
+      </div>
+      <div>
+        <button class="button1">
+          Played
+        </button>
+      </div>
+      <div>
+        <button class="button1">
+          New to you
+        </button>
+      </div>
+    </div>
+
+
+    <div style="display: flex;">
+    <div class="thumb-div">
+    <img class="thumb1" src="project8-img/hqdefault.jpg" onclick="window.open('https://www.youtube.com/watch?v=2tyS5b6ZoE4&list=RD2tyS5b6ZoE4&start_radio=1')">
+    <div class="time">
+      Mix
+    </div>
+    <div class="info">
+      <div class="name">
+        Mix-Positive Vibrations-Continuum
+      </div>
+      <div style="display: flex;">
+      <div class="genre">
+        Tekno, Subway Shamans and more
+      </div>
+      <div class="more-div01">
+        <img class="more-img" src="project8-img/more_vert_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+      </div>
+      </div>
+    </div>
+    </div>
+
+
+    <div class="thumb-div2">
+    <img class="thumb1" src="project8-img/hq720 (2).avif" onclick="window.open('https://www.youtube.com/watch?v=vS6CdGFniPw&list=RDvS6CdGFniPw&start_radio=1')">
+    <div class="time">
+      Mix
+    </div>
+    <div class="info">
+      <div class="name2">
+        Mix-Joining forces-Resonant Squad(Slowed, Best Part Loop)
+      </div>
+      <div style="display: flex;">
+      <div class="genre">
+        LiterallyMe, Zak Conner, Resonant and more
+      </div>
+      <div class="more-div02">
+        <img class="more-img" src="project8-img/more_vert_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+      </div>
+      </div>
+    </div>
+    </div>
+
+
+    <div class="thumb-div2">
+    <img class="thumb1" src="project8-img/hq720 (3).avif" onclick="window.open('https://www.youtube.com/watch?v=umHFYrNCDCI')">
+    <div class="time">
+      25:31
+    </div>
+    <div style="display: flex;">
+      <div>
+        <img class="pfp-video" src="project8-img/channels4_profile (6).jpg">
+      </div>
+    <div class="info">
+      <div class="name2">
+        TUNEL(2011)-Shrnutí + Komentář
+      </div>
+      <div style="display: flex;">
+      <div class="genre">
+        Martin-Shrnutí
+      </div>
+      <div class="more-div">
+        <img class="more-img" src="project8-img/more_vert_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+      </div>
+      </div>
+      <div class="views">
+        124k views 1 year ago
+      </div>
+      </div>
+    </div>
+    </div>
+
+    </div>
+
+
+
+
+    <div style="display: flex;">
+    <div class="thumb-div">
+    <img class="thumb1" src="project8-img/hq720 (4).avif" onclick="window.open('https://www.youtube.com/watch?v=Vgg-ZkaPOVo&t=1s')">
+    <div class="time">
+      11:14
+    </div>
+    <div style="display: flex;">
+    <div>
+      <img class="pfp-video" src="project8-img/unnamed.jpg">
+    </div>
+    <div class="info">
+      <div class="name">
+        ROASTED! #1: The Conjuring (Captive of Demons)
+      </div>
+      <div style="display: flex;">
+      <div class="genre">
+        Zitron_Citron
+      </div>
+      
+      </div>
+      <div class="views2">
+        1.9 milion views 6 years ago
+      </div>
+      </div>
+    </div>
+    </div>
+
+
+    <div class="thumb-div2">
+    <img class="thumb1" src="project8-img/hq720 (1).avif" onclick="window.open('https://www.youtube.com/watch?v=dIn8bEoslkc&list=RDdIn8bEoslkc&start_radio=1')">
+    <div class="time">
+      5:49
+    </div>
+    <div style="display: flex;">
+    <div>
+      <img class="pfp-video" src="project8-img/channels4_profile (7).jpg">
+    </div>
+    <div class="info">
+      <div class="name2">
+        All you need is acid
+      </div>
+      <div style="display: flex;">
+      <div class="genre">
+        Raptatek-Topic
+      </div>
+      <div class="more-div">
+        <img class="more-img" src="project8-img/more_vert_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+      </div>
+      </div>
+      <div class="views">
+        1.1 milion views 3 years ago
+      </div>
+      </div>
+    </div>
+    </div>
+
+
+    <div class="thumb-div2">
+    <img class="thumb1" src="project8-img/hq720.avif" onclick="window.open('https://www.youtube.com/watch?v=kTQh3u0si4E')">
+    <div class="time">
+      25:07
+    </div>
+    <div style="display: flex;">
+    <div>
+      <img class="pfp-video" src="project8-img/channels4_profile (8).jpg">
+    </div>
+    <div class="info">
+      <div class="name2">
+        MAFIA: Extrémní jízda | by PeŤan | #03
+      </div>
+      <div style="display: flex;">
+      <div class="genre">
+        petangames
+      </div>
+      <div class="more-div03">
+        <img class="more-img" src="project8-img/more_vert_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+      </div>
+      </div>
+      <div class="views">
+        160k views 8 years ago
+      </div>
+      </div>
+    </div>
+    </div>
+
+    </div>
+
+
+    <script>
+      const hamburgerBtn = document.querySelector('.hamburger'); // tvoje ☰ ikona
+      const sidebar = document.getElementById('sidebar');
+      const main = document.getElementById('main');
+
+      hamburgerBtn.addEventListener('click', () => {
+        sidebar.classList.toggle('collapsed');
+        main.classList.toggle('collapsed');
+      });
+    </script>
+  </body>
+</html>
